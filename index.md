@@ -1,4 +1,4 @@
-# Sandboxie
+# Sandboxie Pro
 
 <strong>[Sandboxie](https://sandboxie-plus.com/Sandboxie)</strong> is a sandbox-based isolation software for 32- and 64-bit Windows NT-based operating systems. It is being developed by David Xanatos since it became open source, before that it was developed by Sophos (which acquired it from Invincea, which acquired it earlier from the original author Ronen Tzur). It creates a sandbox-like isolated operating environment in which applications can be run or installed without permanently modifying the local or mapped drive. An isolated virtual environment allows controlled testing of untrusted programs and web surfing.
 

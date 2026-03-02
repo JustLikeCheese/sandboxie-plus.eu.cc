@@ -1,0 +1,71 @@
+<link rel="icon" type="image/png" href="/sandboxie-plus.eu.cc/favicon.png">
+<style>
+  #lang {
+    position: fixed; top: 1rem; right: 1rem;
+    cursor: pointer; z-index: 999;
+    background: #fff;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    padding: 4px 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.15);
+    transition: box-shadow .2s;
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: bold; color: #333;
+    line-height: 1;
+  }
+  #lang:hover { box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+  #lang img { width: 20px; border-radius: 2px; display: block; }
+</style>
+
+<button id="lang">
+  <img id="lang-flag" src="https://flagcdn.com/w40/us.png" alt="EN">
+  <span id="lang-text">EN</span>
+</button>
+
+<script>
+const langBtn  = document.getElementById('lang');
+const langFlag = document.getElementById('lang-flag');
+const langText = document.getElementById('lang-text');
+let zhCache = null, enCache = null;
+
+const FLAGS = {
+  en: { src: 'https://flagcdn.com/w40/us.png', alt: 'EN', text: 'EN' },
+  zh: { src: 'https://flagcdn.com/w40/cn.png', alt: 'ZH', text: 'ZH' },
+};
+
+function setFlag(lang) {
+  langFlag.src = FLAGS[lang].src;
+  langFlag.alt = FLAGS[lang].alt;
+  langText.textContent = FLAGS[lang].text;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sec = document.querySelector('section');
+  enCache = sec.innerHTML;
+
+  const saved     = localStorage.getItem('lang');
+  const sysZh     = navigator.language.toLowerCase().startsWith('zh');
+  const isZh      = saved !== null ? saved === 'zh' : sysZh;
+
+  if (isZh) { loadZh(sec); setFlag('zh'); }
+
+  langBtn.onclick = () => {
+    const toZh = localStorage.getItem('lang') !== null
+      ? localStorage.getItem('lang') !== 'zh'
+      : !sysZh;
+    localStorage.setItem('lang', toZh ? 'zh' : 'en');
+    if (toZh) { loadZh(sec); setFlag('zh'); }
+    else       { sec.innerHTML = enCache; setFlag('en'); }
+  };
+});
+
+async function loadZh(sec) {
+  if (zhCache) { sec.innerHTML = zhCache; return; }
+  sec.innerHTML = '<p style="opacity:.5">加载中…</p>';
+  const res  = await fetch('/sandboxie-plus.eu.cc/zh/');
+  const html = await res.text();
+  const doc  = new DOMParser().parseFromString(html, 'text/html');
+  zhCache    = doc.querySelector('section').innerHTML;
+  sec.innerHTML = zhCache;
+}
+</script>

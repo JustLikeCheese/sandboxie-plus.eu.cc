@@ -1,1 +1,15 @@
+logo: favicon.png
 theme: jekyll-theme-minimal
+title: Sandboxie
+description: >
+  Open Source sandbox-based isolation software</p>
+  <ul class="downloads">
+    <li><a href="https://github.com/JustLikeCheese/Sandboxie/releases/latest">Download <strong>x64</strong></a></li>
+    <li><a href="https://github.com/JustLikeCheese/Sandboxie/releases/latest">Download <strong>ARM64</strong></a></li>
+    <li><a href="https://github.com/JustLikeCheese/Sandboxie/releases/latest">Download <strong>EXE</strong></a></li>
+  </ul>
+  <strong><p class="view"><a href="https://github.com/JustLikeCheese/Sandboxie">View the Project on GitHub <small>JustLikeCheese/Sandboxie</small></a></p></strong>
+
+github:
+  is_project_page: false
+  is_user_page: false 
