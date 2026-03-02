@@ -1,4 +1,4 @@
-<link rel="icon" type="image/png" href="/sandboxie-plus.eu.cc/favicon.png">
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
   #lang {
     position: fixed; top: 1rem; right: 1rem;
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadZh(sec) {
   if (zhCache) { sec.innerHTML = zhCache; return; }
   sec.innerHTML = '<p style="opacity:.5">加载中…</p>';
-  const res  = await fetch('/sandboxie-plus.eu.cc/zh/');
+  const res  = await fetch('zh/');
   const html = await res.text();
   const doc  = new DOMParser().parseFromString(html, 'text/html');
   zhCache    = doc.querySelector('section').innerHTML;
